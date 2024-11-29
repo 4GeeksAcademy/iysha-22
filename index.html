@@ -1,76 +1,174 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            /* Color de fondo claro */
+        }
+
+        .card {
+            border-radius: 10px;
+            /* Esquinas redondeadas */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Sombra sutil */
+            max-width: 900px;
+            /* Ancho máximo del card */
+            margin: 50px auto;
+            /* Centrar el card en la página */
+            padding: 20px;
+            /* Espaciado interno */
+        }
+
+        .card-header {
+            background-color: #007bff;
+            /* Color primario de Bootstrap */
+            color: white;
+            /* Texto blanco */
+            text-align: center;
+            /* Centrar el texto */
+        }
+
+        .form-control {
+            border-radius: 5px;
+            /* Campos de entrada redondeados */
+        }
+
+        .btn {
+            border-radius: 5px;
+            /* Botones redondeados */
+        }
+
+        
+
+        .message textarea {
+            text-align: right;
+            width: 100%;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white border border-gray-300 rounded-md">
-        <h1 class="text-xl font-semibold mb-4">Payment form example</h1>
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <span class="block sm:inline">Some fields are missing</span>
-        </div>
-        <form>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div>
-                    <label for="card" class="block text-sm font-medium text-gray-700">Card #</label>
-                    <input type="text" id="card" name="card" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="XXXXXXXXXXXXXXXX">
-                </div>
-                <div>
-                    <label for="cvc" class="block text-sm font-medium text-gray-700">CVC #</label>
-                    <input type="text" id="cvc" name="cvc" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="0000">
-                </div>
-                <div>
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
-                    <div class="mt-1 flex rounded-md shadow-sm">
-                        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">$</span>
-                        <input type="text" id="amount" name="amount" class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Amount">
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">Ejemplo de Formulario de Pago</h3>
+                    </div>
+                    <div class="card-body">
+                        <div  class="alert alert-danger" >Algunos campos están
+                            faltando</div>
+                        <form method="post" action="#">
+                            <div class="row mt-4">
+                                <div class="col-sm-5 pb-3">
+                                    <label for="cardNumber">Número de Tarjeta</label>
+                                    <input class="form-control" id="cardNumber" placeholder="XXXXXXXXXXXXXXXX"
+                                        type="text" required>
+                                </div>
+                                <div class="col-sm-3 pb-3">
+                                    <label for="cvc">CVC</label>
+                                    <input class="form-control" id="cvc" placeholder="000" type="text" required>
+                                </div>
+                                <div class="col-sm-4 pb-3">
+                                    <label for="amount">Cantidad</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input class="form-control" id="amount" placeholder="Cantidad" type="number"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12 pb-3">
+                                        <label for="firstName">Nombre</label>
+                                        <input class="form-control" id="firstName" type="text" required>
+                                    </div>
+                                    <div class="col-sm-12 pb-3">
+                                        <label for="city">Ciudad</label>
+                                        <input class="form-control" id="city" type="text" required>
+                                    </div>
+                                    <div class="col-md-12 pb-3">
+                                        <div class="float-left">
+                                            <p>Aceptamos :</p>
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-secondary">
+                                                    <input autocomplete="off" checked id="mastercard" name="options"
+                                                        type="radio">
+                                                    <i class="fab fa-cc-mastercard"></i>
+                                                </label>
+                                                <label class="btn btn-secondary">
+                                                    <input autocomplete="off" id="visa" name="options" type="radio">
+                                                    <i class="fab fa-cc-visa"></i>
+                                                </label>
+                                                <label class="btn btn-secondary">
+                                                    <input autocomplete="off" id="amex" name="options" type="radio">
+                                                    <i class="fab fa-cc-amex"></i>
+                                                </label>
+                                                <label class="btn btn-secondary">
+                                                    <input autocomplete="off" id="discover" name="options" type="radio">
+                                                    <i class="fab fa-cc-discover"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                     </div>
+                                </div>  
+                                <div  class="col-sm-6">
+                                    <div class="col-sm-12 pb-1">
+                                        <label for="lastName">Apellido</label>
+                                        <input class="form-control" id="lastName" type="text" required>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 pb-3">
+                                            <label for="state">Estado</label>
+                                            <select class="form-control" id="state" required>
+                                                <option value="" disabled selected>Selecciona un estado</option>
+                                                <option value="AL">Alabama</option>
+                                                <option value="CA">California</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="NY">Nueva York</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6 pb-3">
+                                            <label for="postalCode">Código Postal</label>
+                                            <input class="form-control" id="postalCode" type="text" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 pb-3">
+                                        <label for="exampleMessage">Mensaje</label>
+                                        <textarea class="form-control" id="exampleMessage" rows="3"></textarea>
+                                        <small class="text-muted">Agrega cualquier nota aquí.</small>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <button class="btn btn-secondary" type="reset">Cancelar</button>
+                                    <button id="sendForm" class="btn btn-primary" type="submit">Enviar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <label for="first-name" class="block text-sm font-medium text-gray-700">First Name</label>
-                    <input type="text" id="first-name" name="first-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input type="text" id="last-name" name="last-name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div>
-                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                    <input type="text" id="city" name="city" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
-                <div>
-                    <label for="state" class="block text-sm font-medium text-gray-700">State</label>
-                    <select id="state" name="state" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option>Pick a state</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="postal-code" class="block text-sm font-medium text-gray-700">Postal Code</label>
-                    <input type="text" id="postal-code" name="postal-code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                </div>
-            </div>
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700">We accept:</label>
-                <div class="mt-1 flex space-x-2">
-                    <i class="fab fa-cc-visa fa-2x"></i>
-                    <i class="fab fa-cc-mastercard fa-2x"></i>
-                    <i class="fab fa-cc-amex fa-2x"></i>
-                    <i class="fab fa-cc-discover fa-2x"></i>
-                </div>
-            </div>
-            <div class="mb-4">
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                <textarea id="message" name="message" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Add any notes here."></textarea>
-            </div>
-            <div class="flex justify-end space-x-2">
-                <button type="button" class="py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-                <button type="submit" class="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Send</button>
-            </div>
-        </form>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
